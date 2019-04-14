@@ -452,7 +452,14 @@ function sortCitiesArray(arr) {
  *           [0,0,0,0,1]]   
  */
 function getIdentityMatrix(n) {
-   ;
+   let arr = Array.from(Array(n), (item, i) => Array.from(Array(n), (item, j) => {
+      if(i == j) {
+         return 1;
+      } else {
+         return 0;
+      }
+   }));
+   return arr;
 }
 
 /**
@@ -469,7 +476,14 @@ function getIdentityMatrix(n) {
  *     3, 3   => [ 3 ]
  */
 function getIntervalArray(start, end) {
-   throw new Error('Not implemented');
+   let arr = Array.from(Array(end - start + 1));
+   arr[0] = start;
+   arr.map((item, i, array) => {
+      if (array[i] == undefined) {
+         array[i] = array[i-1] + 1;
+      }
+   });
+   return arr;
 }
 
 /**
@@ -484,7 +498,8 @@ function getIntervalArray(start, end) {
  *   [ 1, 1, 2, 2, 3, 3, 4, 4] => [ 1, 2, 3, 4]
  */
 function distinct(arr) {
-   throw new Error('Not implemented');
+   let newArr = [...new Set(arr)];
+   return newArr;
 }
 
 /**
@@ -518,7 +533,7 @@ function distinct(arr) {
  *   }
  */
 function group(array, keySelector, valueSelector) {
-   throw new Error('Not implemented');
+
 }
 
 
@@ -534,7 +549,7 @@ function group(array, keySelector, valueSelector) {
  *   ['one','two','three'], x=>x.split('')  =>   ['o','n','e','t','w','o','t','h','r','e','e']
  */
 function selectMany(arr, childrenSelector) {
-    throw new Error('Not implemented');
+    return arr.reduce((prev, curr) => prev.concat(childrenSelector(curr)),[]);
 }
 
 
@@ -551,7 +566,7 @@ function selectMany(arr, childrenSelector) {
  *   [[[ 1, 2, 3]]], [ 0, 0, 1 ]      => 2        (arr[0][0][1])
  */
 function getElementByIndexes(arr, indexes) {
-    throw new Error('Not implemented');
+    
 }
 
 
@@ -574,7 +589,12 @@ function getElementByIndexes(arr, indexes) {
  * 
  */
 function swapHeadAndTail(arr) {
-    throw new Error('Not implemented');
+    let length = arr.length;
+    let middle = Math.floor(length / 2);
+    let middleSec = Math.round(length / 2);
+    let left = arr.splice(0, middle);
+    let right = arr.splice(middleSec - middle);
+    return right.concat(arr, left);
 }
 
 
